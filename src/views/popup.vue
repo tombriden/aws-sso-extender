@@ -482,7 +482,7 @@ export default {
 }
 
 .card {
-  width: 500px !important;
+  width: 570px !important;
   display: inline-block;
   margin: 0px;
   padding: 0px;
@@ -511,15 +511,15 @@ export default {
 }
 
 .page-user {
-  left: 370px;
+  left: 440px;
 }
 
 .page-favorites {
-  left: 450px;
+  left: 520px;
 }
 
 .page-profiles {
-  left: 410px;
+  left: 480px;
 }
 
 .footer {

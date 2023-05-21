@@ -12,45 +12,33 @@
           placeholder="Search Profiles" />
       </span>
     </template>
-    <PColumn header-style="display: none;" field="name" body-style="text-align: center;"
-      :style="{ 'min-width': '120px' }">
+    <PColumn header-style="display: none;" body-style="text-align: left;" :style="{ 'min-width': '50px' }">
       <template #body="slotProps">
         <div>
           <img :alt="slotProps.data.profile.name" :src="slotProps.data.icon" width="96" style="vertical-align: middle">
-          <br>
-          <span v-if="slotProps.data.applicationName !== 'AWS Account'">{{ slotProps.data.name }}</span>
-          <div v-else>
-            <span>{{ slotProps.data.searchMetadata.AccountName }}</span><br>
-            <span style="font-size: .8rem">{{ slotProps.data.searchMetadata.AccountId }}</span>
-          </div>
         </div>
       </template>
     </PColumn>
-    <PColumn field="applicationName" header-style="display: none;" body-class="display: none;">
-      <template #body="" />
-    </PColumn>
-    <PColumn field="profile.name" header-style="display: none;" body-class="display: none;">
-      <template #body="" />
-    </PColumn>
-    <PColumn :style="{ 'min-width': '220px' }" field="profile.custom.label" header-style="display: none;"
-      body-class="sso-profile">
+    <PColumn header-style="display: none;" field="name" body-style="text-align: left;" :style="{ 'min-width': '220px' }">
       <template #body="slotProps">
         <div>
+          <span class="headSquare" :style="{ backgroundColor: `#${slotProps.data.profile.custom.color}` }"> </span>
           <a class="sso-link" target="_blank" rel="noopener noreferrer"
             :href="demoMode ? 'about:blank' : $ext.createProfileUrl(user, slotProps.data)"><i />
             <i class="pi pi-external-link" :style="{ color: `#${slotProps.data.profile.custom.color}` }" />
-            {{ slotProps.data.profile.custom.label || slotProps.data.profile.name }}</a>
-        </div>
-        <div v-if="'iamRoles' in slotProps.data.profile.custom">
-          <PBadge v-for="(role, idx) in slotProps.data.profile.custom.iamRoles" :key="idx"
-            :value="role.label || role.roleName" class="role-link"
-            :style="{ margin: '5px', 'background-color': `#${role.color}` }"
-            @click="assumeIamRole(role, slotProps.data)" />
+            {{ slotProps.data.searchMetadata.AccountName }}</a>
         </div>
       </template>
+    </PColumn>
+    <PColumn header-style="display: none;" body-style="text-align: left;" :style="{ 'min-width': '80px' }">
+      <template #body="slotProps">
+        <div>
+          <span style="font-size: .8rem">{{ slotProps.data.searchMetadata.AccountId }}</span>
+        </div>
+      </template>
+    </PColumn>
+    <PColumn header-style="display: none;" body-class="sso-profile">
       <template #editor="{ data, field }">
-        <InputText v-model="data[field]" :placeholder="data.profile.custom.label || data.profile.name"
-          style="width: 80%" />
         <ColorPicker style="margin-left: 5px" @click="colorPickerVisible = !colorPickerVisible"
           v-model="data.profile.custom.color" />
         <PDialog v-if="$ext.platform === 'firefox'" v-model:visible="colorPickerVisible" :style="{ width: '50vw' }">
@@ -169,6 +157,15 @@ export default {
   text-decoration: none;
   text-overflow: ellipsis;
   border-radius: 4pt;
+  vertical-align: super;
+}
+
+.headSquare {
+  background-size: contain;
+  display: inline-block;
+  margin: 5px 8px 5px 5px;
+  width: 20px;
+  height: 20px;
 }
 
 .sso-link:hover {
