@@ -100,7 +100,7 @@ function getMenu() {
   return waitForElement('#menu--account');
 }
 function getHeader() {
-  return waitForElement('#awsc-top-level-nav');
+  return waitForElement('#nav-usernameMenu').then((el) => el.querySelectorAll('span')[0]);
 }
 
 function getHeaderLabel(userType: AwsConsole['userType']) {
@@ -128,7 +128,11 @@ function customizeConsole(aws: AwsConsole): void {
   let footerLblPromise;
   if (aws.user!.custom.colorHeader) {
     getHeader().then((header) => {
-      header.style.backgroundColor = `#${color || '222f3e'}`;
+      const span = document.createElement('span');
+      span.setAttribute('data-testid', 'account-menu-button__background');
+      span.className = '_account-menu-button__background_1fdop_1547';
+      span.style.backgroundColor = `#${color}`;
+      header.insertBefore(span, header.firstChild);
     });
     headerLblPromise = getHeaderLabel(aws.userType);
     headerLblPromise.then((headerLbl) => {
