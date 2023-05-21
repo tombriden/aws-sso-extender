@@ -2,7 +2,7 @@
 <template>
   <DataTable v-model:editingRows="editingRows" v-model:filters="filterProfiles" v-model:selection="selectedProfile"
     selection-mode="single" edit-mode="row" class="p-datatable-sm" scroll-height="400px" :value="appProfiles"
-    row-group-mode="rowspan" :group-rows-by="['name']" :sort-field="'name'" :sort-order="1" responsive-layout="scroll"
+    row-group-mode="rowspan" :group-rows-by="['name']" :sort-field="'searchMetadata.AccountName'" :sort-order="1" responsive-layout="scroll"
     @row-edit-cancel="colorPickerVisible = false" @row-edit-save="updateProfileLabel"
     @keydown.enter="navSelectedProfile()">
     <template #header>
