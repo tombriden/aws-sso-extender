@@ -367,7 +367,7 @@
       >
       <div
         class="profile-field nav"
-        style="width: 120px;"
+        style="width: 135px;"
         @click="!tableEditor ? $ext.navSelectedProfile(profile, user, users, settings) : editProfile(profile)"
       >
         <div v-if="profile.applicationName === 'AWS Account'">
