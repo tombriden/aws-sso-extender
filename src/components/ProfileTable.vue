@@ -376,14 +376,14 @@
             class="truncate app-title"
             :title="profile.searchMetadata!.AccountName"
           >
-            <b>{{ newTableSettings.sortApp === 'asc' || newTableSettings.sortApp === 'desc' ? profile.searchMetadata!.AccountName : profile.searchMetadata!.AccountId }}</b>
+            <b>{{ newTableSettings.sortApp === 'asc' || newTableSettings.sortApp === 'desc' || newTableSettings.sortApp === false ? profile.searchMetadata!.AccountName : profile.searchMetadata!.AccountId }}</b>
           </p>
           <p
             style="margin: 0px"
             class="truncate app-subtitle"
             :title="profile.searchMetadata!.AccountId"
           >
-            {{ newTableSettings.sortApp === 'asc' || newTableSettings.sortApp === 'desc' ? profile.searchMetadata!.AccountId : profile.searchMetadata!.AccountName }}
+            {{ newTableSettings.sortApp === 'asc' || newTableSettings.sortApp === 'desc'  || newTableSettings.sortApp === false ? profile.searchMetadata!.AccountId : profile.searchMetadata!.AccountName }}
           </p>
         </div>
         <div v-else>
